@@ -5,6 +5,19 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
+#app title 
+st.title("RENEWABLE ENERGY ANALYSIS")
+
+#create a paragraph 
+
+st.write ('''
+What Is Renewable Energy? 
+          Renewable energy comes from unlimited, naturally replenished resources,
+           such as the sun, tides, and wind. Renewable energy can be used for electricity generation, 
+          space and water heating and cooling, and transportation.
+
+''')
+
 # Load the dataset
 df = pd.read_csv("C:\\Users\\Administrator\\OneDrive\\Desktop\\renewable energy\\Renewable Energy.csv")
 
