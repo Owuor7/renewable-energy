@@ -1,3 +1,4 @@
+#import necessary libararies
 import pandas as pd
 import streamlit as st
 from sklearn.ensemble import RandomForestRegressor
@@ -8,21 +9,31 @@ from sklearn.preprocessing import LabelEncoder
 #app title 
 st.title("RENEWABLE ENERGY ANALYSIS")
 
-#create a paragraph 
+#create a paragraph  
+st.write('''
+What Is Renewable Energy?
 
-st.write ('''
-What Is Renewable Energy? 
-          Renewable energy comes from unlimited, naturally replenished resources,
-           such as the sun, tides, and wind. Renewable energy can be used for electricity generation, 
-          space and water heating and cooling, and transportation.
+    Renewable energy originates from inexhaustible, naturally replenished sources as,
+          the sun, wind, and tides.
+          It plays a crucial role in generating electricity, 
+         heating and cooling spaces and water, and powering transportation. 
 
+Instructions for Using the Web Application:
+
+  The aim of this web application is to predict energy consumption using various parameters such as region,
+          country name, year, indicator name, 
+         indicator code, and income group. 
+         To get started, please use the options on the left to explore and input the relevant data. 
+       
 ''')
+
+
 
 # Load the dataset
 df = pd.read_csv("C:\\Users\\Administrator\\OneDrive\\Desktop\\renewable energy\\Renewable Energy.csv")
 
-# Display the first 5 rows
-st.write(df.head())
+#Display the first 5 rows
+st.write('The first five rows',df.head())
 
 # User input: number of rows to display
 num_rows = st.slider("Select the number of rows", min_value=1, max_value=len(df), value=5)
@@ -48,7 +59,7 @@ if st.checkbox("Check for total number duplicates"):
 df = df.drop('Country Code', axis=1)
 
 # Convert 'Year' column to datetime objects first
-df['Year'] = pd.to_datetime(df['Year'], format='%d/%m/%Y')  # Adjust format for MM/DD/YYYY
+df['Year'] = pd.to_datetime(df['Year'], format='%d/%m/%Y')  # Adjust format for dd/mm/YYYY
 
 # Encode categorical variables
 encoded_columns = ['Region', 'Income Group', 'Indicator Name', 'Country Name', 'Indicator Code', 'Year']
@@ -66,7 +77,7 @@ y = df['Energy Consump.']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Initialize the Random Forest Regressor
-rf_regressor = RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42)
+rf_regressor = RandomForestRegressor(n_estimators=100,random_state=42)
 
 # Train the model
 rf_regressor.fit(X_train, y_train)
@@ -78,8 +89,8 @@ y_pred = rf_regressor.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
-st.write(f"Mean Squared Error: {mse}")
-st.write(f"R-squared: {r2}")
+st.write(f"Mean Squared Error: {mse:.4f}")
+st.write(f"R-squared: {r2:.4f}")
 
 # User input for new data
 st.sidebar.write("## Enter new data for prediction")
