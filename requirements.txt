@@ -1,7 +1,3 @@
-tensorflow=2.16.2
-pillow
-uvicorn
-fastapi
 pandas 
 streamlit 
 scikit-learn
