@@ -34,6 +34,7 @@ df = pd.read_csv("C:\\Users\\Administrator\\OneDrive\\Desktop\\renewable energy\
 
 #Display the first 5 rows
 st.write('The first five rows',df.head())
+df.head()
 
 # User input: number of rows to display
 num_rows = st.slider("Select the number of rows", min_value=1, max_value=len(df), value=5)
